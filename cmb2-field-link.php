@@ -47,60 +47,75 @@ if ( ! class_exists( 'CMB2_Field_Link' ) ) {
         'class'	=> '',
         'rel'	=> '',
         'title' => '',
+        'target' => '',
       ] );
 
       ?>
-      <div style="overflow: hidden;">
-        
-        <p><label for="<?= $field_type_object->_id( '_href' ); ?>"><?= esc_html( 'URL' ); ?></label></p>
-        <?= $field_type_object->input( [
-          'type' => 'text_url',
-          'name' => $field_type_object->_name( '[href]' ),
-          'id' => $field_type_object->_id( '_href' ),
-          'value' => $field_escaped_value['href'],
-          'desc' => 'The URL of the link, could be relative or absolute ( http / https ).',
-        ] ); ?>
-
-      </div>
-      <div style="overflow: hidden">
-        <p><label for="<?= $field_type_object->_id( '_text' ); ?>"><?= esc_html( 'Text'  ); ?></label></p>
+      <div style="overflow: hidden; display: inline-block; width: 49%;">
+        <h4 style="margin: 0 0 8px 0;"><label for="<?= $field_type_object->_id( '_text' ); ?>"><?= esc_html( 'Text'  ); ?></label></h4>
         <?= $field_type_object->input( [
           'type' => 'text',
           'name' => $field_type_object->_name( '[text]' ),
           'id' => $field_type_object->_id( '_text' ),
           'value' => $field_escaped_value['text'],
-          'desc' => 'The link text.',
+          'desc' => '',
         ] ); ?>
+        <p style="margin-top: 5px; padding-top: 0;"><small>The Link Text.</small></p>
       </div>
-      <div style="overflow: hidden">
-        <p><label for="<?= $field_type_object->_id( '_class' ); ?>"><?= esc_html( 'Classes' ); ?></label></p>
+      <div style="overflow: hidden; display: inline-block; width: 49%;">
+        <h4 style="margin: 0 0 8px 0;"><label for="<?= $field_type_object->_id( '_href' ); ?>"><?= esc_html( 'URL' ); ?></label></h4>
+        <?= $field_type_object->input( [
+          'type' => 'text_url',
+          'name' => $field_type_object->_name( '[href]' ),
+          'id' => $field_type_object->_id( '_href' ),
+          'value' => $field_escaped_value['href'],
+          'desc' => '',
+        ] ); ?>
+        <p style="margin-top: 5px; padding-top: 0;"><small>The URL of the link.</small></p>
+      </div>
+      <div style="overflow: hidden; display: inline-block; width: 49%;">
+        <h4 style="margin: 0 0 8px 0;"><label for="<?= $field_type_object->_id( '_class' ); ?>"><?= esc_html( 'Classes' ); ?></label></h4>
         <?= $field_type_object->input( [
           'type' => 'text',
           'name' => $field_type_object->_name( '[class]' ),
           'id' => $field_type_object->_id( '_class' ),
           'value' => $field_escaped_value['class'],
-          'desc' => 'CSS classes, separated with a space.', 
+          'desc' => '', 
         ] ); ?>
+        <p style="margin-top: 5px; padding-top: 0;"><small>CSS classes, separated with a space.</small></p>
       </div>
-      <div style="overflow: hidden">
-        <p><label for="<?= $field_type_object->_id( '_rel' ); ?>"><?= esc_html( 'Rel' ); ?></label></p>
+      <div style="overflow: hidden; display: inline-block; width: 49%;">
+        <h4 style="margin: 0 0 8px 0;"><label for="<?= $field_type_object->_id( '_rel' ); ?>"><?= esc_html( 'Rel' ); ?></label></h4>
         <?= $field_type_object->input( [
           'type' => 'text',
           'name' => $field_type_object->_name( '[rel]' ),
           'id' => $field_type_object->_id( '_rel' ),
           'value' => $field_escaped_value['rel'],
-          'desc' => 'The rel property ( "nofollow" ).',
+          'desc' => '',
         ] ); ?>
+        <p style="margin-top: 5px; padding-top: 0;"><small>The rel property ( "nofollow" ).</small></p>
       </div>
-      <div style="overflow: hidden">
-        <p><label for="<?= $field_type_object->_id( '_title' ); ?>"><?= esc_html( 'Title' ); ?></label></p>
+      <div style="overflow: hidden; display: inline-block; width: 49%;">
+        <h4 style="margin: 0 0 8px 0;"><label for="<?= $field_type_object->_id( '_title' ); ?>"><?= esc_html( 'Title' ); ?></label></h4>
         <?= $field_type_object->input( [
           'type' => 'text',
           'name' => $field_type_object->_name( '[title]' ),
           'id' => $field_type_object->_id( '_title' ),
           'value' => $field_escaped_value['title'],
-          'desc' => 'The title property ( Displays when hovering over link ).',
+          'desc' => '',
         ] ); ?>
+        <p style="margin-top: 5px; padding-top: 0;"><small>The title property ( Shown on hover ).</small></p>
+      </div>
+      <div style="overflow: hidden; display: inline-block; width: 49%;">
+        <h4 style="margin: 0 0 8px 0;"><label for="<?= $field_type_object->_id( '_target' ); ?>"><?= esc_html( 'Target' ); ?></label></h4>
+        <?= $field_type_object->input( [
+          'type' => 'text',
+          'name' => $field_type_object->_name( '[target]' ),
+          'id' => $field_type_object->_id( '_target' ),
+          'value' => $field_escaped_value['target'],
+          'desc' => '',
+        ] ); ?>
+        <p style="margin-top: 5px; padding-top: 0;"><small>Defaults to "_self"</small></p>
       </div>                     
       <?php
       echo $field_type_object->_desc( true );
@@ -115,7 +130,7 @@ if ( ! class_exists( 'CMB2_Field_Link' ) ) {
         return $override_value;
       }
 
-      $link_keys = ['href', 'text', 'class', 'rel', 'title'];
+      $link_keys = ['href', 'text', 'class', 'rel', 'title', 'target'];
 
       foreach ( $link_keys as $key ) {
         if ( ! empty( $value[ $key ] ) ) {
