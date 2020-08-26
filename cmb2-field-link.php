@@ -8,9 +8,9 @@
  * Plugin URI: https://github.com/pixelwatt/cmb2-field-link
  * Github Plugin URI: https://github.com/pixelwatt/cmb2-field-link
  * Description: CMB2 field type to create a link.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Rob Clark (forked from scottsawyer)
- * Author URI: https://robclark.io
+ * Author URI:
  * License: GPLv2+
  */
 
@@ -27,7 +27,7 @@ if ( ! class_exists( 'CMB2_Field_Link' ) ) {
 		/**
 		 * Current version number
 		 */
-		const VERSION = '1.0.1';
+		const VERSION = '1.0.2';
 
 		/**
 		 * Initialize the plugin
@@ -118,67 +118,69 @@ if ( ! class_exists( 'CMB2_Field_Link' ) ) {
 			?>
 		<p><small>The URL of the link.</small></p>
 	  </div>
-	  <div class="cmb2-field-link-col">
-		<label for="<?php echo $field_type_object->_id( '_class' ); ?>"><?php echo esc_html( 'Classes:' ); ?></label>
-			<?php
-				echo $field_type_object->input(
-					array(
-						'type'  => 'text',
-						'name'  => $field_type_object->_name( '[class]' ),
-						'id'    => $field_type_object->_id( '_class' ),
-						'value' => $field_escaped_value['class'],
-						'desc'  => '',
-					)
-				);
-			?>
-		<p><small>CSS classes, separated with a space.</small></p>
-	  </div>
-	  <div class="cmb2-field-link-col">
-		<label for="<?php echo $field_type_object->_id( '_rel' ); ?>"><?php echo esc_html( 'Rel:' ); ?></label>
-			<?php
-				echo $field_type_object->input(
-					array(
-						'type'  => 'text',
-						'name'  => $field_type_object->_name( '[rel]' ),
-						'id'    => $field_type_object->_id( '_rel' ),
-						'value' => $field_escaped_value['rel'],
-						'desc'  => '',
-					)
-				);
-			?>
-		<p><small>The rel property ( "nofollow" ).</small></p>
-	  </div>
-	  <div class="cmb2-field-link-col">
-		<label for="<?php echo $field_type_object->_id( '_title' ); ?>"><?php echo esc_html( 'Title:' ); ?></label>
-			<?php
-				echo $field_type_object->input(
-					array(
-						'type'  => 'text',
-						'name'  => $field_type_object->_name( '[title]' ),
-						'id'    => $field_type_object->_id( '_title' ),
-						'value' => $field_escaped_value['title'],
-						'desc'  => '',
-					)
-				);
-			?>
-		<p><small>The title property (shown on hover).</small></p>
-	  </div>
-	  <div class="cmb2-field-link-col">
-		<label for="<?php echo $field_type_object->_id( '_target' ); ?>"><?php echo esc_html( 'Target:' ); ?></label>
-			<?php
-				echo $field_type_object->input(
-					array(
-						'type'  => 'text',
-						'name'  => $field_type_object->_name( '[target]' ),
-						'id'    => $field_type_object->_id( '_target' ),
-						'value' => $field_escaped_value['target'],
-						'desc'  => '',
-						'placeholder' => '_self',
-					)
-				);
-			?>
-		<p><small>Change to "_blank" to open in new window.</small></p>
-	  </div>
+			<?php if ( ! isset( $field->args['minimal_options'] ) ) { ?>
+		  <div class="cmb2-field-link-col">
+			<label for="<?php echo $field_type_object->_id( '_class' ); ?>"><?php echo esc_html( 'Classes:' ); ?></label>
+				<?php
+					echo $field_type_object->input(
+						array(
+							'type'  => 'text',
+							'name'  => $field_type_object->_name( '[class]' ),
+							'id'    => $field_type_object->_id( '_class' ),
+							'value' => $field_escaped_value['class'],
+							'desc'  => '',
+						)
+					);
+				?>
+			<p><small>CSS classes, separated with a space.</small></p>
+		  </div>
+		  <div class="cmb2-field-link-col">
+			<label for="<?php echo $field_type_object->_id( '_rel' ); ?>"><?php echo esc_html( 'Rel:' ); ?></label>
+				<?php
+					echo $field_type_object->input(
+						array(
+							'type'  => 'text',
+							'name'  => $field_type_object->_name( '[rel]' ),
+							'id'    => $field_type_object->_id( '_rel' ),
+							'value' => $field_escaped_value['rel'],
+							'desc'  => '',
+						)
+					);
+				?>
+			<p><small>The rel property ( "nofollow" ).</small></p>
+		  </div>
+		  <div class="cmb2-field-link-col">
+			<label for="<?php echo $field_type_object->_id( '_title' ); ?>"><?php echo esc_html( 'Title:' ); ?></label>
+				<?php
+					echo $field_type_object->input(
+						array(
+							'type'  => 'text',
+							'name'  => $field_type_object->_name( '[title]' ),
+							'id'    => $field_type_object->_id( '_title' ),
+							'value' => $field_escaped_value['title'],
+							'desc'  => '',
+						)
+					);
+				?>
+			<p><small>The title property (shown on hover).</small></p>
+		  </div>
+		  <div class="cmb2-field-link-col">
+			<label for="<?php echo $field_type_object->_id( '_target' ); ?>"><?php echo esc_html( 'Target:' ); ?></label>
+				<?php
+					echo $field_type_object->input(
+						array(
+							'type'  => 'text',
+							'name'  => $field_type_object->_name( '[target]' ),
+							'id'    => $field_type_object->_id( '_target' ),
+							'value' => $field_escaped_value['target'],
+							'desc'  => '',
+							'placeholder' => '_self',
+						)
+					);
+				?>
+			<p><small>Change to "_blank" to open in new window.</small></p>
+		  </div>
+			<?php } ?>
 			<?php
 			echo $field_type_object->_desc( true );
 			//return $this->rendered( ob_get_clean() );
